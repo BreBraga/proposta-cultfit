@@ -23,8 +23,7 @@ PROPOSTA.config = {
   IMPLEMENTATION_PRICE: 1100,
   IMPLEMENTATION_INSTALLMENTS: 3,
   EXTRA_USER_PRICE: 87,        // usuário adicional, R$/mês
-  EXTRA_NUMBER_PRICE: 139.9,   // número de WhatsApp adicional, R$/mês
-  EXTRA_NUMBER_SETUP: 99       // ativação única por número adicional
+  EXTRA_NUMBER_PRICE: 139.9    // número de WhatsApp adicional, R$/mês
 };
 ```
 
