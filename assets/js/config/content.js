@@ -18,7 +18,10 @@ PROPOSTA.config = {
   ESSENTIAL_PRICE: 999,           // R$/mês · plano Essencial
   COMPLETE_PRICE: 1099,           // R$/mês · plano Completa
   IMPLEMENTATION_PRICE: 1100,     // R$ · valor único de implementação
-  IMPLEMENTATION_INSTALLMENTS: 3  // parcelas da implementação (junto às primeiras mensalidades)
+  IMPLEMENTATION_INSTALLMENTS: 3, // parcelas da implementação (junto às primeiras mensalidades)
+  EXTRA_USER_PRICE: 87,           // R$/mês · usuário adicional
+  EXTRA_NUMBER_PRICE: 139.9,      // R$/mês · número de WhatsApp adicional (conexão via API não oficial)
+  EXTRA_NUMBER_SETUP: 99          // R$ · ativação única por número adicional
 };
 
 PROPOSTA.content = (function (cfg) {
@@ -479,7 +482,16 @@ PROPOSTA.content = (function (cfg) {
           { mes: 'Mês 4 em diante', a: 'Mensalidade', b: null }
         ]
       },
-      nota: 'Não há taxa por usuário adicional, por número adicional, por suporte ou qualquer outro custo além dos valores apresentados nesta proposta.'
+      adicionais: {
+        titulo: 'Adicionais',
+        texto: 'A estrutura contratada é de ' + U + ' usuários e ' + N + ' números. Se a operação crescer, é possível ampliar com os valores abaixo.',
+        itens: [
+          { nome: 'Usuário adicional', valor: cfg.EXTRA_USER_PRICE, unidade: '/mês', desc: 'por acesso além dos ' + U + ' incluídos' },
+          { nome: 'Número de WhatsApp adicional', valor: cfg.EXTRA_NUMBER_PRICE, unidade: '/mês', desc: 'por número além dos ' + N + ' incluídos, conectado via API' },
+          { nome: 'Ativação de número adicional', valor: cfg.EXTRA_NUMBER_SETUP, unidade: 'única', desc: 'cobrada uma vez por número adicional conectado' }
+        ]
+      },
+      nota: 'Os valores acima cobrem tudo o que está descrito nesta proposta. Os adicionais só se aplicam se a Cult Fit optar por ampliar a estrutura de usuários ou números.'
     },
 
     /* ================= IMPLANTAÇÃO ================= */
@@ -510,6 +522,7 @@ PROPOSTA.content = (function (cfg) {
         { q: 'O plano de R$ ' + cfg.COMPLETE_PRICE.toLocaleString('pt-BR') + ' possui chatbot?', a: 'Sim. Possui chatbot tradicional para fluxos automáticos de atendimento, com menu de opções e direcionamento para a equipe, sem Inteligência Artificial.' },
         { q: 'Qual plano possui disparos?', a: 'O plano Completa, de R$ ' + cfg.COMPLETE_PRICE.toLocaleString('pt-BR') + '/mês. O plano Essencial não inclui disparos nem chatbot.' },
         { q: 'Como funciona a implementação?', a: 'Existe um investimento único de R$ ' + cfg.IMPLEMENTATION_PRICE.toLocaleString('pt-BR') + ', parcelado em ' + cfg.IMPLEMENTATION_INSTALLMENTS + 'x junto às primeiras mensalidades. Não é um valor mensal.' },
+        { q: 'E se a Cult Fit precisar de mais usuários ou números?', a: 'É possível ampliar: usuário adicional por R$ ' + cfg.EXTRA_USER_PRICE.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) + '/mês e número de WhatsApp adicional por R$ ' + cfg.EXTRA_NUMBER_PRICE.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) + '/mês, com ativação única de R$ ' + cfg.EXTRA_NUMBER_SETUP.toLocaleString('pt-BR', { minimumFractionDigits: 2 }) + ' por número.' },
         { q: 'As etapas do funil já vêm definidas?', a: 'As etapas mostradas nesta proposta são ilustrativas. O funil é configurado conforme o processo comercial da Cult Fit durante a implantação.' }
       ]
     },

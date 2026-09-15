@@ -53,6 +53,18 @@ PROPOSTA.register('investimento', (function () {
     '</div>';
   }
 
+  function addons(C, ui) {
+    var d = C.investimento.adicionais;
+    function brl(v) { return v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    return '<div class="addons rv">' +
+      '<div class="addons__hd">' + ui.plate(d.titulo, 'plate--ink plate--eyebrow') + '<p>' + ui.esc(d.texto) + '</p></div>' +
+      '<ul class="addons__list">' + ui.each(d.itens, function (it) {
+        return '<li><div><b>' + ui.esc(it.nome) + '</b><span>' + ui.esc(it.desc) + '</span></div>' +
+          '<strong class="tnum">+ R$ ' + brl(it.valor) + '<small>' + ui.esc(it.unidade) + '</small></strong></li>';
+      }) + '</ul>' +
+    '</div>';
+  }
+
   return {
     render: function (C, ui) {
       var d = C.investimento;
@@ -60,7 +72,8 @@ PROPOSTA.register('investimento', (function () {
         plans(C, ui) +
         '<div class="mt-lg">' + comparison(C, ui) + '</div>' +
         '<div class="mt-lg">' + implementation(C, ui) + '</div>' +
-        '<div class="mt">' + ui.note('Sem custos adicionais.', d.nota, 'shield') + '</div>';
+        '<div class="mt">' + addons(C, ui) + '</div>' +
+        '<div class="mt">' + ui.note('Valores fechados.', d.nota, 'shield') + '</div>';
       return ui.section('investimento', 'paper', inner, { wrap: 'wrap--mid' });
     }
   };
