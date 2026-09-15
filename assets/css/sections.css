@@ -459,6 +459,10 @@
 .addons__list b { display: block; font-size: 13px; font-weight: 700; margin-bottom: .2rem; }
 .addons__list span { font-size: 12px; color: var(--muted); line-height: 1.5; }
 .addons__list strong { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--text); line-height: 1; white-space: nowrap; }
+.addons__opts { display: flex; flex-direction: column; gap: .45rem; }
+.addons__opts p { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; padding-top: .45rem; border-top: 1px dashed var(--border); }
+.addons__opts p:first-child { padding-top: 0; border-top: 0; }
+.addons__opts em { font-size: 10.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .addons__list strong small { font-family: var(--body); font-size: .7rem; font-weight: 700; color: var(--faint); margin-left: .3rem; }
 
 /* =========================================================================

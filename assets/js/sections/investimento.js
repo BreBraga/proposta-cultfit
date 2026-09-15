@@ -59,8 +59,12 @@ PROPOSTA.register('investimento', (function () {
     return '<div class="addons rv">' +
       '<div class="addons__hd">' + ui.plate(d.titulo, 'plate--ink plate--eyebrow') + '<p>' + ui.esc(d.texto) + '</p></div>' +
       '<ul class="addons__list">' + ui.each(d.itens, function (it) {
-        return '<li><div><b>' + ui.esc(it.nome) + '</b><span>' + ui.esc(it.desc) + '</span></div>' +
-          '<strong class="tnum">+ R$ ' + brl(it.valor) + '<small>' + ui.esc(it.unidade) + '</small></strong></li>';
+        var price = it.opcoes
+          ? '<div class="addons__opts">' + ui.each(it.opcoes, function (o) {
+              return '<p><em>' + ui.esc(o.rotulo) + '</em><strong class="tnum">+ R$ ' + brl(o.valor) + '<small>' + ui.esc(it.unidade) + '</small></strong></p>';
+            }) + '</div>'
+          : '<strong class="tnum">+ R$ ' + brl(it.valor) + '<small>' + ui.esc(it.unidade) + '</small></strong>';
+        return '<li><div><b>' + ui.esc(it.nome) + '</b><span>' + ui.esc(it.desc) + '</span></div>' + price + '</li>';
       }) + '</ul>' +
     '</div>';
   }
